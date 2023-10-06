@@ -32,7 +32,7 @@ Things you may want to cover:
   | Seller      | references  | null: false  |
   | Situation   | string      | null: false  |
 
- ## buyテーブル
+ ## ordersテーブル
 
   | Colum            | Type        | Options      |
   |                  |             |              |
@@ -41,6 +41,13 @@ Things you may want to cover:
   | Delivery charge  | string      | null: false  |
   | shipping source  | string      | null: false  |
   | Estimated day    | string      | null: false  |
+
+## Addressテーブル
+
+  | Colum            | Type        | Options      |
+  |                  |             |              |
+  | shipping source  | references  |null: false   |
+  | buyer address    | references  | null: false  |
 
 
 * Database initialization
