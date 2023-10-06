@@ -40,7 +40,6 @@ Things you may want to cover:
   |                  |             |              |
   | Buyer            | references   null: false   |
   | Delivery charge  | string      | null: false  |
-  | shipping source  | string      | null: false  |
   | Estimated day    | string      | null: false  |
 
 ## Addressテーブル
