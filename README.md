@@ -13,6 +13,36 @@ Things you may want to cover:
 
 * Database creation
 
+
+ ## users テーブル
+
+  | Colum    | Type     | Options      |
+  |
+  | email    | string   | null: false  |
+  | password | string   | null: false  |
+  | birthday | string   | null: false  |
+
+ ## items テーブル
+
+  | Colum       | Type        | Options      |
+  |
+  | items name  | string      | null: false  |
+  | Category    | string      | null: false  |
+  | Price       | string      | null: false  |
+  | Seller      | references  | null: false  |
+  | Situation   | string      | null: false  |
+
+ ## buyテーブル
+
+  | Colum            | Type        | Options      |
+  |                  |             |              |
+  | Buyer            | references   null: false   |
+  | Adress           | string      | null: false  |
+  | Delivery charge  | string      | null: false  |
+  | shipping source  | string      | null: false  |
+  | Estimated day    | string      | null: false  |
+
+
 * Database initialization
 
 * How to run the test suite
