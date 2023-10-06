@@ -17,7 +17,8 @@ Things you may want to cover:
  ## users テーブル
 
   | Colum    | Type     | Options      |
-  |
+  |                                    
+  | name     | string   | null: false  |
   | email    | string   | null: false  |
   | password | string   | null: false  |
   | birthday | string   | null: false  |
@@ -31,13 +32,13 @@ Things you may want to cover:
   | Price       | string      | null: false  |
   | Seller      | references  | null: false  |
   | Situation   | string      | null: false  |
+  | images      | string      | null: false  |
 
  ## ordersテーブル
 
   | Colum            | Type        | Options      |
   |                  |             |              |
   | Buyer            | references   null: false   |
-  | Adress           | string      | null: false  |
   | Delivery charge  | string      | null: false  |
   | shipping source  | string      | null: false  |
   | Estimated day    | string      | null: false  |
