@@ -20,35 +20,36 @@ Things you may want to cover:
   |                                    
   | name     | string   | null: false  |
   | email    | string   | null: false  |
-  | password | string   | null: false  |
+  | encrypted_password | string   | null: false  |
   | birthday | string   | null: false  |
+  | adress   | string   | null: false  |
 
  ## items テーブル
 
-  | Colum       | Type        | Options      |
+  | Colum            | Type        | Options      |
   |
-  | items name  | string      | null: false  |
-  | Category    | string      | null: false  |
-  | Price       | string      | null: false  |
-  | Seller      | references  | null: false  |
-  | Situation   | string      | null: false  |
-  | images      | string      | null: false  |
+  | items_name       | string      | null: false  |
+  | category         | string      | null: false  |
+  | price_id         | integer     | null: false  |
+  | seller           | references  | null: false  |
+  | situation        | integer     | null: false  |
+  | delivery charge  | string      | null: false  |
+  | shipping_ source | references  |null: false   |
+  | estimated_day    | string      | null: false  |
 
  ## ordersテーブル
 
   | Colum            | Type        | Options      |
   |                  |             |              |
-  | Buyer            | references   null: false   |
-  | Delivery charge  | string      | null: false  |
-  | Estimated day    | string      | null: false  |
+  | buyer            | references  | null: false  |
+  | items_name       | references  | null: false  |
 
 ## Addressテーブル
 
   | Colum            | Type        | Options      |
   |                  |             |              |
-  | shipping source  | references  |null: false   |
-  | buyer address    | references  | null: false  |
-
+  | buyer_address    | references  | null: false  |
+  | seller_address   | references  | null:false   |
 
 * Database initialization
 
