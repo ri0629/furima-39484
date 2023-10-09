@@ -60,7 +60,7 @@ Things you may want to cover:
 
   | Colum            | Type        | Options      |
   |                  |             |              | 
-  | postcode         | integer     | null: false  |
+  | postcode         | string      | null: false  |
   | prefecture_id    | integer     | null: false  |
   | city             | string      | null: false  |
   | block            | string      | null: false  |
