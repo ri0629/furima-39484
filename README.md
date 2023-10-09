@@ -41,6 +41,7 @@ Things you may want to cover:
   | delivery_charge_id  | integer     | null: false  |
   | prefecture_id       | integer     | null: false  |
   | estimated_day_id    | integer     | null: false  |
+  | description         | text        | null: false  |
 
   - belongs_to :user
   - has_one :order
