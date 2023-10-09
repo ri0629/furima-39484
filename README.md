@@ -26,7 +26,7 @@ Things you may want to cover:
   | encrypted_password | string      | null: false  |
   | birthday           | date        | null: false  |
 
-  - has_many :item
+  - has_many :items
   - has_many :orders
 
  ## items テーブル
