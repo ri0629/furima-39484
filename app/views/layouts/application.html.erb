@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Furima39484</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<head>
+  <title>Furima</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+
+
+
+<div class= "nav__right">
+ <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
+ <%= link_to "新規登録", new_user_registration_path,class: :nav__btn %>
+ </div>
+ 
+ </div>
+
+  <%= yield %>
+</body>
+
 </html>
