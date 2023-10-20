@@ -6,9 +6,12 @@ RSpec.describe User, type: :model do
   end
   
   describe 'ユーザー新規登録' do
+    context '新規登録できるとき' do
   it 'nicknameとemailとlast_nameとfirst_nameとlast_name_kanaとfirst_name_kanaとbirthdayが存在すれば登録できる' do
     expect(@user).to be_valid
    end
+  end
+  context '新規登録できないとき' do
   it 'nicknameが空では登録できない' do
      #nicknameが空では登路できないテストコードを記述します
     #@user = FactoryBot.build(:user)
@@ -117,7 +120,7 @@ RSpec.describe User, type: :model do
   @user.valid? 
   expect(@user.errors.full_messages).to include("First name kana is invalid")
  end
-
+end
 
 
 end
