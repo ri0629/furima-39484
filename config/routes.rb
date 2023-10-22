@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   root to: "items#index"
   resources :items, only: [:new, :create] do
     #resources :users, only: [:index, :create]
+
+    root to: 'articles#index'
+    resources :articles
   end
 end
