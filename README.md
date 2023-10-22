@@ -17,7 +17,7 @@ Things you may want to cover:
  ## users テーブル
 
   | Colum              | Type        | Options      |
-  | last_name          | string      |null:false                               
+  | last_name          | string      | null:false                               
   | first_name         | string      | null: false  |
   | last_name_kana     | string      | null: false  |
   | first_name_kana    | string      | null: false  |
