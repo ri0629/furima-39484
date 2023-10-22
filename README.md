@@ -27,7 +27,7 @@ Things you may want to cover:
   | birthday           | date        | null: false  |
 
   - has_many :items
-  - has_many :orders
+  - has_many :order
 
  ## items テーブル
 
