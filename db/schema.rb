@@ -10,23 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_22_140545) do
-  create_table "articles", charset: "utf8", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "text", null: false
-    t.integer "genre_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "categories", charset: "utf8", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "text", null: false
-    t.integer "genre_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_10_22_080450) do
   create_table "items", charset: "utf8", force: :cascade do |t|
     t.string "item"
     t.integer "category_id"
@@ -40,14 +24,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_140545) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
-  create_table "situations", charset: "utf8", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "text", null: false
-    t.integer "situation_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
