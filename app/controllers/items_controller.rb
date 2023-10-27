@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
-  
+  #before_action :authenticate_user!
 
   def index
+    @items = Item.all
     @items = Category.order("created_at DESC")
     @items = Information.order("created_at DESC")
     @items = Charge.order("created_at DESC")
@@ -14,22 +15,25 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @items = Item.new(category_params)
-    if @category.save
-    redirect_to root_path
-   else
-     render :new, statues: :unprocessable_entity
-   end
- end
+    @item = Item.new(item_params)
+     if @item.save
+      redirect_to user_session_path
+     else
+      render :new, status: :unprocessable_entity
+     end
+    
+    end
+
 
  private
 
- def category_params
-   params.require(:category).permit(:title,:text,:genre_id)
+ #def category_params
+   #params.require(:category).permit(:title,:text,:genre_id)
 
    def item_params
-    params.require(:item).permit(:content, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:item, :price, :description)
   end
 
+  
+
  end
-end
