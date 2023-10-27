@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  
+
   def index
     @items = Category.order("created_at DESC")
     @items = Information.order("created_at DESC")
@@ -24,5 +26,10 @@ class ItemsController < ApplicationController
 
  def category_params
    params.require(:category).permit(:title,:text,:genre_id)
+
+   def item_params
+    params.require(:item).permit(:content, :image).merge(user_id: current_user.id)
+  end
+
  end
 end
