@@ -15,9 +15,9 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(items_params)
      if @item.save
-      redirect_to user_session_path
+      redirect_to root_path
      else
       render :new, status: :unprocessable_entity
      end
@@ -25,13 +25,15 @@ class ItemsController < ApplicationController
     end
 
 
+
+
  private
 
  #def category_params
    #params.require(:category).permit(:title,:text,:genre_id)
 
-   def item_params
-    params.require(:item).permit(:item, :price, :description)
+   def items_params
+    params.require(:item).permit(:item, :price, :description, :category_id, :information_id, :charge_id, :prefecture_id, :estimated_day_id).merge(user_id: current_user.id)
   end
 
   

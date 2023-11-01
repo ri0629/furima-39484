@@ -5,8 +5,8 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.integer :category_id
       t.integer :price
       t.references :user
-      t.integer :situation_id
-      t.integer :delivery_charge_id
+      t.integer :information_id
+      t.integer :charge_id
       t.integer :prefecture_id
       t.integer :estimated_day_id
       t.text :description
