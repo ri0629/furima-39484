@@ -37,31 +37,31 @@ end
      it 'カテゴリーが空では登録できない' do
        @item.category_id = ''
        @item.valid?
-       expect(@item.errors.full_messages).to include("Category can't be blank")
+       expect(@item.errors.full_messages).to include("Category is not a number")
      end
      
      it '商品の状態が空では登録できない' do
       @item.information_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Information can't be blank")
+      expect(@item.errors.full_messages).to include("Information is not a number")
      end
   
      it '配送料の負担が空では登録できない' do
       @item.charge_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Charge can't be blank")
+      expect(@item.errors.full_messages).to include("Charge is not a number")
      end
 
      it '発送までの日数が空では登録できない' do
       @item.estimated_day_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Estimated day can't be blank")
+      expect(@item.errors.full_messages).to include("Estimated day is not a number")
      end
 
      it '発送元が空では登録できない' do
       @item.prefecture_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      expect(@item.errors.full_messages).to include("Prefecture is not a number")
      end
 
      it '価格が空では登録できない' do
@@ -81,6 +81,19 @@ end
      @item.valid?
      expect(@item.errors.full_messages).to include("Price is not a number")
     end
+
+    it '商品が40字を超えると保存できない' do
+        @item.item = 'あああああああああああああああああああああああああああああああああああああああああ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item is too long (maximum is 40 characters)")
+    end
+    
+    it '商品説明が1000字を超えると保存できない' do
+      @item.description = 'a' * 1001
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
+  end
+
     
    end
   

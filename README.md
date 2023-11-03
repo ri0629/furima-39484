@@ -36,7 +36,7 @@ Things you may want to cover:
   | item                | string      | null: false  |
   | category_id         | integer     | null: false  |
   | price               | integer     | null: false  |
-  | user                | references  | null: false ,foreign_key: true |
+  | user                | references  | null: false ,   foreign_key: true |
   | situation_id        | integer     | null: false  |
   | delivery_charge_id  | integer     | null: false  |
   | prefecture_id       | integer     | null: false  |
