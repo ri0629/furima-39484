@@ -93,7 +93,12 @@ end
       @item.valid?
       expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
   end
-
+    
+    it 'ユーザー登録していなければ保存できない' do
+      @item.user_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("User must exist")
+    end
     
    end
   
