@@ -7,15 +7,14 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item, user:@user)
   end
 
-  describe '商品登録' do
+describe '商品出品機能' do
     context '商品登録できるとき' do
     it 'すべて存在すれば登録できる' do
       expect(@item).to be_valid
+         end
+       end
     end
-  end
-end
-
-     context '商品登録できないとき' do
+    context '商品登録できないとき' do
      it '商品画像が空では登録できない' do
        @item.item = ''
        @item.valid?
@@ -34,34 +33,34 @@ end
        expect(@item.errors.full_messages).to include("Description can't be blank")
      end
     
-     it 'カテゴリーが空では登録できない' do
-       @item.category_id = ''
+     it 'カテゴリーidが1の場合は出品できない' do
+       @item.category_id = '1'
        @item.valid?
-       expect(@item.errors.full_messages).to include("Category is not a number")
+       expect(@item.errors.full_messages).to include("Category must be other than 1")
      end
      
-     it '商品の状態が空では登録できない' do
-      @item.information_id = ''
+     it '商品の状態のidが1の場合は出品できない' do
+      @item.information_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Information is not a number")
+      expect(@item.errors.full_messages).to include("Information must be other than 1")
      end
   
-     it '配送料の負担が空では登録できない' do
-      @item.charge_id = ''
+     it '配送料の負担のidが1の場合は出品できない' do
+      @item.charge_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Charge is not a number")
+      expect(@item.errors.full_messages).to include("Charge must be other than 1")
      end
 
-     it '発送までの日数が空では登録できない' do
-      @item.estimated_day_id = ''
+     it '発送までの日数のidが1の場合は出品できない' do
+      @item.estimated_day_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Estimated day is not a number")
+      expect(@item.errors.full_messages).to include("Estimated day must be other than 1")
      end
 
-     it '発送元が空では登録できない' do
-      @item.prefecture_id = ''
+     it '発送元idが1の場合は出品できない' do
+      @item.prefecture_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Prefecture is not a number")
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
      end
 
      it '価格が空では登録できない' do
@@ -70,12 +69,18 @@ end
       expect(@item.errors.full_messages).to include("Price can't be blank")
      end
 
-     it '価格は、¥300~¥9,999,999でないと登録できない' do
+     it '価格が300円未満では出品できない' do
       @item.price = '100'
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
      end
-    
+
+     it '価格が9,999,999円を超えると出品できない' do
+      @item.price = '1,000,000,000'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+     end
+     
      it '価格は半角数値以外は保存できない' do
      @item.price = '５００'
      @item.valid?

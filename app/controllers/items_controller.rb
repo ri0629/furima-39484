@@ -3,11 +3,11 @@ class ItemsController < ApplicationController
 
   def index
     #@items = Item.all
-    @items = Category.order("created_at DESC")
-    @items = Information.order("created_at DESC")
-    @items = Charge.order("created_at DESC")
-    @items = Prefecture.order("created_at DESC")
-    @items = Delivery.order("created_at DESC")
+    # @items = Category.order("created_at DESC")
+    # @items = Information.order("created_at DESC")
+    # @items = Charge.order("created_at DESC")
+    # @items = Prefecture.order("created_at DESC")
+    # @items = Delivery.order("created_at DESC")
   end
 
   def new
