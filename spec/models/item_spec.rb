@@ -16,9 +16,9 @@ describe '商品出品機能' do
     end
     context '商品登録できないとき' do
      it '商品画像が空では登録できない' do
-       @item.item = ''
+       @item.image = nil
        @item.valid?
-       expect(@item.errors.full_messages).to include("Item can't be blank")
+       expect(@item.errors.full_messages).to include("Image can't be blank")
      end
    end
      it '商品名が空では登録できない' do
@@ -76,9 +76,9 @@ describe '商品出品機能' do
      end
 
      it '価格が9,999,999円を超えると出品できない' do
-      @item.price = '1,000,000,000'
+      @item.price = '1000000000'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
      end
      
      it '価格は半角数値以外は保存できない' do

@@ -23,5 +23,6 @@ validates :information_id, numericality: { other_than: 1}
 validates :charge_id, numericality: { other_than: 1}
 validates :prefecture_id, numericality: { other_than: 1}
 validates :estimated_day_id, numericality: { other_than: 1}
+validates :image, presence:true
 
 end
