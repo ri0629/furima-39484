@@ -27,7 +27,7 @@ Things you may want to cover:
   | birthday           | date        | null: false  |
 
   - has_many :items
-  - has_many :orders
+  - has_many :order
 
  ## items テーブル
 
@@ -36,9 +36,9 @@ Things you may want to cover:
   | item                | string      | null: false  |
   | category_id         | integer     | null: false  |
   | price               | integer     | null: false  |
-  | user                | references  | null: false ,foreign_key: true |
-  | situation_id        | integer     | null: false  |
-  | delivery_charge_id  | integer     | null: false  |
+  | user                | references  | null: false ,   foreign_key: true |
+  | information_id        | integer     | null: false  |
+  | charge_id           | integer     | null: false  |
   | prefecture_id       | integer     | null: false  |
   | estimated_day_id    | integer     | null: false  |
   | description         | text        | null: false  |
