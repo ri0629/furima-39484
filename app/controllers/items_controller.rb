@@ -2,12 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
   def index
-    #@items = Item.all
-    # @items = Category.order("created_at DESC")
-    # @items = Information.order("created_at DESC")
-    # @items = Charge.order("created_at DESC")
-    # @items = Prefecture.order("created_at DESC")
-    # @items = Delivery.order("created_at DESC")
+     @items = Item.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -19,6 +14,7 @@ class ItemsController < ApplicationController
      if @item.save
       redirect_to root_path
      else
+
       render :new, status: :unprocessable_entity
      end
     
