@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_item, only: [:edit, :update,:show]
+  before_action :contributor_confirmation, only: [:edit, :update]
 
   def index
      @items = Item.includes(:user).order('created_at DESC')
@@ -31,10 +32,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  private
-def contributor_confirmation
-    redirect_to root_path unless @item.user == current_user
-end
+#   #private
+# def contributor_confirmation
+#     redirect_to root_path unless @item.user == current_user
+# end
 
 
 
@@ -56,7 +57,11 @@ end
 
  def set_item
   @item = Item.find(params[:id])
-end
+ end
+
+ def contributor_confirmation
+  redirect_to root_path unless @item.user == current_user
+ end
 
  #def category_params
    #params.require(:category).permit(:title,:text,:genre_id)
