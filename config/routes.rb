@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :items do
      get '/furima-footer.png', to: 'items#footer_image',on: :collection
      patch '/:id', to: 'items#update', on: :member
+     get '/new-route', to: 'items#new_route'
   end
 
 end
