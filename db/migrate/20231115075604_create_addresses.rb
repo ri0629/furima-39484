@@ -7,7 +7,7 @@ class CreateAddresses < ActiveRecord::Migration[7.0]
       t.string :block
       t.string :building
       t.string :phone_number
-      t.references :order
+      t.references :orders
 
 
 
