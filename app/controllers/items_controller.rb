@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy, :show]
   before_action :set_item, only: [:edit, :update,:show, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
@@ -50,7 +50,6 @@ class ItemsController < ApplicationController
      if @item.save
       redirect_to root_path
      else
-
       render :new, status: :unprocessable_entity
      end
     
