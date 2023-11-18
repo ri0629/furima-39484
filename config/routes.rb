@@ -8,6 +8,7 @@ Rails.application.routes.draw do
      get '/furima-footer.png', to: 'items#footer_image',on: :collection
      patch '/:id', to: 'items#update', on: :member
      get '/new-route', to: 'items#new_route'
+     delete '/users/sign_out', to: 'sessions#destroy', as: :destroy_user_session
   end
 
 end
