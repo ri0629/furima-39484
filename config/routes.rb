@@ -11,6 +11,10 @@ Rails.application.routes.draw do
      delete '/users/sign_out', to: 'sessions#destroy', as: :destroy_user_session
   end
 
+  Rails.application.routes.draw do
+    get '/path', to: 'controller#action'
+  end
+
 end
 
 

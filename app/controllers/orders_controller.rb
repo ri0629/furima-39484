@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
     before_action :authenticate_user!
-    #before_action :set_item, only: [:edit, :update,:show, :destroy]
+    before_action :set_item, only: [:edit, :update,:show, :destroy]
     before_action :non_purchased_item, only: [:index, :create]
 
    def index
@@ -10,11 +10,13 @@ class OrdersController < ApplicationController
 
    def create
     @item = Item.find(params[:item_id])
+    
     @address = Address.new(order_params)
     if @address.valid?
+      
       pay_item
       @address.save
-      redirect_to root_path, status: :unprocessable_entity
+      redirect_to item_orders_path, status: :unprocessable_entity
     else
       render :index
     end
@@ -29,20 +31,19 @@ class OrdersController < ApplicationController
    params.require(:address).permit(:postcode, :prefecture, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
  end
  
-#  def set_item
-#   @item = Item.find(params[:item_id])
-#   #@item = Item.find(params[:id])
-# end
+  def set_item
+   @item = Item.find(params[:item_id])
+   #@item = Item.find(params[:id])
+ end
 
-  def pay_item
-    Payjp.api_key = ENV['PAYJP_PUBLIC_KEY']
-    Payjp::Charge.create(
-    amount: @item.price,        # 商品の値段
-    card: order_params[:token], # カードトークン
-    currency: 'jpy'             # 通貨の種類（日本円）
+def pay_item
+  Payjp.api_key = sk_test_cf295c0c9bc9e7d969379514
+  Payjp::Charge.create(
+    amount: order_params[:price],
+    card: order_params[:token],
+    currency:'jpy'
   )
 end
-
 def non_purchased_item
   
   @item = Item.find(params[:item_id])

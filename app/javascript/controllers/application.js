@@ -8,10 +8,10 @@ window.Stimulus   = application
 
 export { application }
 
-require("@rails/ujs").start()
-// JavaScriptイベント発火をするために、画面遷移高速化のGemを無効化する。
-// require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
-require("../item_price");
-require("../card");
+// require("@rails/ujs").start()
+// // JavaScriptイベント発火をするために、画面遷移高速化のGemを無効化する。
+// // require("turbolinks").start()
+// require("@rails/activestorage").start()
+// require("channels")
+// require("../item_price");
+// require("../card");
