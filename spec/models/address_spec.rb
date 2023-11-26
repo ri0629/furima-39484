@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Address, type: :model do
   before do
-    @address = FactoryBot.build(:order_form)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @address = FactoryBot.build(:order_form, user_id:user.id, item_id:item.id)
   end
 
   describe '配送情報の保存' do
@@ -34,14 +36,14 @@ RSpec.describe Address, type: :model do
        @address.building = nil
        expect(@address).to be_valid
      end
-     it '電話番号が数字11番桁でハイフンなしであれば保存できる' do
+     it '電話番号が11桁でハイフンなしであれば保存できる' do
        @address.phone_number = '00000000000'
        expect(@address).to be_valid
      end
    
      
      context '配送先情報の保存ができないとき' do
-        it '郵便番号が体と保存できる' do
+        it '郵便番号が空だと保存できない' do
           @address.postcode = ''
           @address.valid?
           expect(@address.errors.full_messages).to include("Postcode can't be blank")
@@ -66,8 +68,8 @@ RSpec.describe Address, type: :model do
             @address.valid?
             expect(@address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
           end
-          it '電話番号が12桁以上あると保存できないこと' do
-            @address.phone_number =  '0000000000000'
+          it '電話番号が9桁以下であると保存できない' do
+            @address.phone_number =  '0000000'
             @address.valid?
             expect(@address.errors.full_messages).to include('Phone number is invalid')
           end
@@ -77,9 +79,17 @@ RSpec.describe Address, type: :model do
             expect(@address.errors.full_messages).to include("Token can't be blank")
           end
 
+           it 'userが紐付いていなければ購入できない' do
+            @address.user_id = nil
+            @address.valid?
+            expect(@address.errors.full_messages).to include("User can't be blank")
+           end
         
-        
-        
+           it 'itemが紐付いていなければ購入できない' do
+            @address.item_id = nil
+            @address.valid?
+            expect(@address.errors.full_messages).to include("Item can't be blank")
+           end
         end
 
 
