@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :destroy, :show]
-  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :set_item, only: [:edit, :update,:show, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
   def index
@@ -16,10 +16,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_id == current_user.id && @item.order.nil?
-    else
-      redirect_to root_path
-    end
   end
 
 
@@ -41,11 +37,20 @@ class ItemsController < ApplicationController
    end
   
 
+
+#   #private
+# def contributor_confirmation
+#     redirect_to root_path unless @item.user == current_user
+# end
+
+
+
   def create
     @item = Item.new(items_params)
      if @item.save
       redirect_to root_path
      else
+
       render :new, status: :unprocessable_entity
      end
     
@@ -60,9 +65,9 @@ class ItemsController < ApplicationController
   @item = Item.find(params[:id])
  end
 
-#  def contributor_confirmation
-#   redirect_to root_path unless @item.user == current_user
-#  end
+ def contributor_confirmation
+  redirect_to root_path unless @item.user == current_user
+ end
 
  #def category_params
    #params.require(:category).permit(:title,:text,:genre_id)
