@@ -73,6 +73,7 @@ RSpec.describe Address, type: :model do
             @address.valid?
             expect(@address.errors.full_messages).to include('Phone number is invalid')
           end
+
           it 'トークンが空だと保存できない' do
             @address.token = ''
             @address.valid?
@@ -90,6 +91,25 @@ RSpec.describe Address, type: :model do
             @address.valid?
             expect(@address.errors.full_messages).to include("Item can't be blank")
            end
+         
+           it '電話番号に半角数字以外が含まれている場合は購入できない' do
+            @address.phone_number =  '000000a'
+            @address.valid?
+            expect(@address.errors.full_messages).to include('Phone number is invalid')
+           end
+
+           it '電話番号が12桁以上では購入できない' do
+            @address.phone_number =  '000000000000000000000000'
+            @address.valid?
+            expect(@address.errors.full_messages).to include('Phone number is invalid')
+           end
+
+
+
+
+
+
+
         end
 
 
