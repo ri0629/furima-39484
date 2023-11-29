@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_18_115601) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_075604) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,33 +40,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_18_115601) do
   end
 
   create_table "addresses", charset: "utf8", force: :cascade do |t|
+    t.string "postcode", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "block", null: false
+    t.string "building"
+    t.string "phone_number", null: false
+    t.bigint "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "postcode"
-    t.integer "prefecture"
-    t.string "city"
-    t.string "block"
-    t.string "building"
-    t.string "phone_number"
-    t.bigint "order_id", null: false
-    t.integer "prefecture_id"
     t.index ["order_id"], name: "index_addresses_on_order_id"
   end
 
   create_table "items", charset: "utf8", force: :cascade do |t|
-    t.string "item"
-    t.integer "category_id"
-    t.integer "price"
-    t.bigint "user_id"
-    t.integer "situation_id"
-    t.integer "delivery_charge_id"
-    t.integer "prefecture_id"
-    t.integer "estimated_day_id"
-    t.text "description"
+    t.string "item", null: false
+    t.integer "category_id", null: false
+    t.integer "price", null: false
+    t.bigint "user_id", null: false
+    t.integer "information_id", null: false
+    t.integer "charge_id", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "estimated_day_id", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "information_id"
-    t.integer "charge_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -92,7 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_18_115601) do
     t.string "last_name_kana"
     t.string "first_name_kana"
     t.string "nickname"
-    t.string "encrypted_passeord"
     t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -101,4 +97,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_18_115601) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "orders"
+  add_foreign_key "items", "users"
 end
